@@ -1,0 +1,525 @@
+:root {
+    --header-h: 74px;
+    --border-color: #ddd;
+    --accent: #111;
+    --font: "Noto Sans KR", system-ui, -apple-system, BlinkMacSystemFont;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Apple SD Gothic Neo', 'Spoqa', sans-serif, system-ui;
+    min-height: 900px;
+}
+
+/* ===== 헤더 기본 ===== */
+.header {
+    border-bottom: 1px solid #eee;
+    background: #fff;
+}
+
+.header-inner {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    height: var(--header-h);
+    gap: 100px;
+    padding-top: 40px;
+    margin-bottom: 40px;
+}
+
+/* ===== 로고 ===== */
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.logo-main {
+    padding-top: 5px;
+    line-height: 22px;
+}
+
+.logo-main img {
+    display: block;
+    width: 150px;
+}
+
+/* ===== nav_menu (1차 메뉴) ===== */
+.nav_menu {
+    display: flex;
+    flex: 1;
+    position: relative;
+}
+
+.nav_menu>li {
+    list-style: none;
+    position: relative;
+}
+
+.nav_menu>li>a {
+    display: block;
+    padding: 0 20px;
+    font-size: 20px;
+    color: #111;
+    font-weight: 500;
+    line-height: 22px;
+    text-decoration: none;
+    white-space: nowrap;
+}
+
+.nav_menu>li:hover>a,
+.nav_menu>li:focus-within>a {
+    font-weight: 700;
+}
+
+.nav_menu>li:hover::after,
+.nav_menu>li:focus-within::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: -25px;
+    width: 100%;
+    height: 3px;
+    background: #000;
+}
+
+/* ===== 우측 유틸 ===== */
+.util {
+    display: flex;
+    gap: 12px;
+    align-items: center;
+    font-size: 13px;
+}
+
+.search-box {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    border: 1px solid #000;
+    border-radius: 999px;
+    padding: 4px 12px;
+    min-width: 220px;
+}
+
+.search-box input {
+    border: none;
+    outline: none;
+    flex: 1;
+    font-size: 12px;
+}
+
+.all-nav-btn {
+    background: none;
+    border: none;
+    font-weight: 600;
+    cursor: pointer;
+    font-size: 22px;
+    line-height: 1;
+}
+
+/* ===== 메가메뉴 ===== */
+.mega-panel {
+    position: absolute;
+    left: 0;
+    top: var(--header-h);
+    width: 100%;
+    background: #fff;
+    border-bottom: 1px solid #ddd;
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.05);
+    display: none;
+    z-index: 50;
+}
+
+.mega-inner {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    gap: 40px;
+    padding: 28px 0 36px;
+}
+
+.mega-col {
+    min-width: 120px;
+}
+
+.mega-col h4 {
+    font-size: 14px;
+    font-weight: 700;
+    margin-bottom: 12px;
+}
+
+.mega-col ul {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 7px;
+}
+
+.mega-col a {
+    text-decoration: none;
+    color: #222;
+    font-size: 13px;
+}
+
+.mega-col a:hover {
+    text-decoration: underline;
+}
+
+/* li 위에 마우스 올리면 그 안의 메가메뉴 보이게 */
+.nav_menu>li:hover .mega-panel,
+.nav_menu>li:focus-within .mega-panel {
+    display: block;
+}
+
+/* ===== 본문 ===== */
+.content {
+    max-width: 1200px;
+    margin: 60px auto;
+    padding: 0 10px;
+}
+
+/* 위쪽 두 개 나란히 */
+.top-row {
+    display: flex;
+    gap: 30px;
+    margin-bottom: 40px;
+}
+
+/* 공통 박스 모양 */
+.box {
+    background: #fff;
+}
+
+/* 왼쪽 큰 박스 */
+.box-big {
+    flex: 2;
+    height: 400px;
+    padding: 0;
+    /* 배너가 꽉 차게 하려고 0으로 */
+    overflow: hidden;
+    border: none;
+    /* 배너가 이미 둥글게 들어오니까 테두리 제거해도 됨 */
+}
+
+/* 오른쪽 작은 박스 */
+.box-side {
+    flex: 1;
+    height: auto;
+}
+
+/* 아래 한 줄짜리 박스 */
+.box-bottom {
+    height: 300px;
+}
+
+/* ====== 섹션 꽉 채우는 배너 ====== */
+.hero-slider {
+    width: 100%;
+    height: 100%;
+    border-radius: 22px;
+    overflow: hidden;
+    position: relative;
+}
+
+.hero-track {
+    display: flex;
+    width: 300%;
+    /* 슬라이드 3개 */
+    height: 100%;
+    transition: transform .4s ease;
+}
+
+.hero-slide {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    padding: 28px 30px;
+    justify-content: space-between;
+    align-items: center;
+    gap: 20px;
+    color: #fff;
+}
+
+.hero1 {
+    background: linear-gradient(135deg, #37a1ff 0%, #d07bff 100%);
+}
+
+.hero2 {
+    background: linear-gradient(135deg, #3bbf94 0%, #4a8fff 100%);
+}
+
+.hero3 {
+    background: linear-gradient(135deg, #ff8f5a 0%, #ff5ab8 100%);
+}
+
+.hero-text h2 {
+    font-size: 26px;
+    line-height: 1.25;
+    margin-bottom: 10px;
+}
+
+.hero-text p {
+    font-size: 14px;
+    line-height: 1.4;
+    opacity: .9;
+}
+
+.hero-visual {
+    flex: 0 0 180px;
+    display: flex;
+    justify-content: center;
+}
+
+.fake-card {
+    width: 120px;
+    height: 170px;
+    background: #fff;
+    border-radius: 14px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, .15);
+}
+
+/* 점 */
+.hero-dots {
+    position: absolute;
+    bottom: 16px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 6px;
+}
+
+.hero-dots .dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 999px;
+    background: rgba(255, 255, 255, .5);
+    border: none;
+    cursor: pointer;
+}
+
+.hero-dots .dot.active {
+    width: 24px;
+    background: #fff;
+    transition: width .2s ease;
+}
+
+/* 로그인 카드 전체 */
+.login-card.new {
+    background: #fff;
+    border: 1px solid #e8edf3;
+    border-radius: 16px;
+    padding: 16px 16px 0;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    height: 100%;
+}
+
+/* 탭 줄 */
+.login-tabs2 {
+    display: flex;
+    gap: 0;
+    border-bottom: 1px solid #dfe5ec;
+}
+
+.login-tabs2 .tab2 {
+    flex: 1;
+    background: none;
+    border: none;
+    height: 36px;
+    font-size: 13px;
+    color: #777;
+    cursor: pointer;
+}
+
+.login-tabs2 .tab2.active {
+    color: #111;
+    font-weight: 600;
+    border-bottom: 3px solid #111;
+}
+
+/* 탭 내용 공통 */
+.login-panels2 {
+    padding: 14px 0 0;
+}
+
+.panel2 {
+    display: none;
+    display: none;
+}
+
+.panel2.show {
+    display: block;
+}
+
+.panel-tip {
+    font-size: 13px;
+    color: #444;
+    line-height: 1.4;
+    margin-bottom: 14px;
+}
+
+/* 입력 박스 */
+.input2 {
+    display: flex;
+    align-items: center;
+    background: #fff;
+    border: 1px solid #e2e6ed;
+    border-radius: 10px;
+    padding: 6px 12px;
+    margin-bottom: 10px;
+    gap: 6px;
+}
+
+.input2 input {
+    border: none;
+    outline: none;
+    flex: 1;
+    font-size: 13px;
+}
+
+.input2 .save,
+.input2 .icon {
+    font-size: 12px;
+    color: #8891a0;
+}
+
+/* 파란 버튼 */
+.blue-btn {
+    width: 100%;
+    background: #2f82ff;
+    border: none;
+    height: 38px;
+    border-radius: 8px;
+    color: #fff;
+    font-weight: 600;
+    cursor: pointer;
+    margin-top: 6px;
+    margin-bottom: 10px;
+}
+
+/* 아래 링크 두 개 */
+.panel-links {
+    display: flex;
+    justify-content: space-between;
+    font-size: 12px;
+    margin-bottom: 6px;
+}
+
+.panel-links a {
+    color: #3b5998;
+    text-decoration: none;
+}
+
+/* 구분선 */
+.login-divide {
+    border: none;
+    border-bottom: 1px solid #ecf0f4;
+    margin: 10px -16px 10px;
+}
+
+/* 하단 4개 바로가기 */
+.quick-links {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 6px;
+    padding: 10px 0 12px;
+}
+
+.quick-links a {
+    background: #fff;
+    border: 1px solid #edf1f6;
+    border-radius: 10px;
+    padding: 8px 0 6px;
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+    align-items: center;
+    font-size: 12px;
+    color: #222;
+    text-decoration: none;
+}
+
+.quick-links .ico {
+    font-size: 16px;
+}
+
+/* 3번 박스용 */
+.box-bottom {
+    border: none;
+    background: none;
+    height: auto;
+}
+
+.orig-wrap {
+    background: #fff;
+    border: 1px solid #e4e8f0;
+    border-radius: 18px;
+    padding: 24px 26px 20px;
+    display: flex;
+    gap: 40px;
+}
+
+/* 왼쪽 영역 */
+.orig-left {
+    flex: 0 0 200px;
+}
+
+.orig-title {
+    font-size: 34px;
+    line-height: 1;
+    font-weight: 700;
+    margin-bottom: 14px;
+}
+
+.orig-text {
+    font-size: 13px;
+    color: #555;
+    line-height: 1.4;
+    margin-bottom: 14px;
+}
+
+.orig-more {
+    font-size: 13px;
+    color: #0d4bff;
+    text-decoration: none;
+    font-weight: 500;
+}
+
+/* 오른쪽 카드 리스트 */
+.orig-list {
+    flex: 1;
+    display: grid;
+    grid-template-columns: repeat(4, minmax(120px, 1fr));
+    gap: 28px 30px;
+    align-items: flex-start;
+}
+
+.orig-item {
+    text-align: center;
+}
+
+.orig-item a {
+    display: block;
+    width: 140px;
+    margin: 0 auto 10px;
+}
+
+.orig-item img {
+    width: 100%;
+    border-radius: 12px;
+    display: block;
+}
+
+.orig-name {
+    font-size: 13px;
+    font-weight: 500;
+    color: #111;
+    white-space: nowrap;
+}
