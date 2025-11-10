@@ -1,0 +1,515 @@
+@media (min-width: 1024px) {
+    html {
+        zoom: 125%;
+    }
+}
+
+/* 전체 폭 */
+.content {
+    max-width: 800px;
+    margin: 150px auto;
+    padding: 0 10px;
+}
+
+/* 컨테이너 */
+.detail-wrap {
+    margin-bottom: 140px;
+}
+
+/* 상단 2열 섹션 */
+.card-top {
+    display: flex;
+    gap: 48px;
+    background: #fcf1f1;
+    /* 살짝 빨간 배경 */
+    border-radius: 20px;
+    padding: 40px 45px;
+    align-items: center;
+}
+
+/* 왼쪽 카드 */
+.card-top-left {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+}
+
+.card-preview {
+    width: 180px;
+    height: 280px;
+    background: #fff;
+    border-radius: 16px;
+    box-shadow: 0 18px 40px rgba(0, 0, 0, 0.12);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.card-preview img {
+    max-width: 100%;
+    border-radius: 12px;
+}
+
+.card-rotate-btn {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    border: none;
+    background: #fff;
+    box-shadow: 0 4px 14px rgba(0, 0, 0, .1);
+    cursor: pointer;
+    font-size: 16px;
+}
+
+/* 오른쪽 설명 */
+.card-top-right {
+    flex: 1;
+}
+
+.top-head {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 20px;
+}
+
+.card-title {
+    font-size: 32px;
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+}
+
+.top-actions {
+    display: flex;
+    gap: 8px;
+}
+
+.icon-btn {
+    width: 32px;
+    height: 32px;
+    border: 1px solid rgba(0, 0, 0, .08);
+    border-radius: 50%;
+    background: #fff;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.card-sub {
+    margin-top: 16px;
+    font-size: 16px;
+    color: #666;
+}
+
+.top-benefits {
+    margin-top: 24px;
+    border-top: 1px solid rgba(0, 0, 0, .05);
+    padding-top: 16px;
+    display: grid;
+    gap: 10px;
+}
+
+.top-benefits p {
+    font-size: 15px;
+    color: #222;
+}
+
+.top-benefits p span {
+    color: #666;
+    margin-right: 4px;
+}
+
+/* 연회비 — 새 버전 */
+.annual-box {
+    background: #fff;
+    max-width: 695px;
+    border: 1px solid #ddd;
+    border-radius: 16px;
+    padding: 16px 18px 8px;
+    margin: 18px auto;
+}
+
+.annual-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.annual-title {
+    font-weight: 600;
+    font-size: 14px;
+}
+
+.annual-arrow {
+    text-decoration: none;
+    color: #000;
+    font-size: 18px;
+    line-height: 1;
+}
+
+.annual-rows {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.annual-rows li {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 6px 0 10px;
+}
+
+.annual-type {
+    font-size: 13px;
+    color: #666;
+}
+
+.annual-fee-value {
+    font-size: 13px;
+    font-weight: 600;
+    color: #000;
+}
+
+/* 아래 기존 박스 재사용 */
+.card-annc {
+    background: #e7efff;
+    border-radius: 999px;
+    text-align: center;
+    margin: 34px 0 20px;
+    max-width: 430px;
+}
+
+.card-annc a {
+    display: inline-block;
+    padding: 10px 22px 11px;
+    font-size: 12px;
+    color: #2552a5;
+    text-decoration: none;
+}
+
+/* 혜택 목록 박스 */
+.benefit-list {
+    max-width: 695px;
+    background: #fff;
+    border-radius: 20px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, .03);
+    border: 1px solid #ddd;
+    margin: 18px auto;
+    padding: 6px 0;
+}
+
+.benefit-list ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.benefit-list li {
+    border-bottom: 1px solid #f2f2f2;
+}
+
+.benefit-list li:last-child {
+    border-bottom: none;
+}
+
+.benefit-list button {
+    width: 100%;
+    text-align: left;
+    background: none;
+    border: none;
+    padding: 14px 18px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 14px;
+    cursor: pointer;
+}
+
+.benefit-list button .chev {
+    font-size: 16px;
+    color: #999;
+}
+
+/* 하단 고정 버튼 (sticky) */
+.floating-apply {
+    position: sticky;
+    bottom: 0;
+    background: #fff;
+    border-radius: 16px;
+    padding: 14px 16px;
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    z-index: 20;
+    max-width: 1080px;
+    margin: 40px auto 60px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, .05);
+}
+
+.floating-apply .btn-sub,
+.floating-apply .btn-main {
+    width: 160px;
+    height: 46px;
+    border-radius: 12px;
+    border: none;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.floating-apply .btn-sub {
+    background: #f0f3f7;
+    border: 1px solid #ddd;
+    color: #222;
+}
+
+.floating-apply .btn-main {
+    background: #CB2B11;
+    color: #fff;
+}
+
+/* 반응형 */
+@media (max-width: 880px) {
+    .card-top {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .card-top-left {
+        flex-direction: row;
+    }
+
+    .card-title {
+        font-size: 26px;
+    }
+}
+
+/* ===== 연회비 모달 ===== */
+.fee-modal {
+    position: fixed;
+    inset: 0;
+    display: none;
+    /* 기본은 숨김 */
+    z-index: 9999;
+}
+
+.fee-modal.show {
+    display: block;
+}
+
+.fee-modal-dim {
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, .45);
+}
+
+.fee-modal-box {
+    position: relative;
+    max-width: 600px;
+    background: #fff;
+    border-radius: 26px;
+    margin: 250px auto;
+    padding: 26px 28px 22px;
+    z-index: 1;
+    box-shadow: 0 20px 35px rgba(0, 0, 0, .15);
+}
+
+.fee-modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 18px;
+}
+
+.fee-modal-header h2 {
+    font-size: 22px;
+    font-weight: 700;
+}
+
+.fee-modal-close {
+    width: 30px;
+    height: 30px;
+    border-radius: 999px;
+    border: none;
+    background: #f3f3f3;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+.fee-item {
+    margin-bottom: 16px;
+}
+
+.fee-item h3 {
+    font-size: 15px;
+    font-weight: 600;
+    margin-bottom: 6px;
+}
+
+.fee-sub {
+    font-size: 13px;
+    color: #666;
+    line-height: 1.35;
+}
+
+.fee-line {
+    height: 1px;
+    background: #eee;
+    margin: 14px 0 12px;
+}
+
+.fee-notice {
+    margin-top: 12px;
+    padding-left: 14px;
+    color: #555;
+    font-size: 12px;
+    line-height: 1.45;
+}
+
+/*===카드비교===*/
+.card-compare-wrap {
+    background: #fff;
+    border-radius: 16px;
+    padding: 32px 32px 24px;
+    border: 1px solid #eee;
+}
+
+.compare-title h2 {
+    font-size: 22px;
+    margin-bottom: 4px;
+}
+
+.compare-title p {
+    color: #777;
+    font-size: 14px;
+    margin-bottom: 24px;
+}
+
+.compare-body {
+    display: flex;
+    gap: 32px;
+    align-items: center;
+    margin-bottom: 28px;
+}
+
+.compare-card {
+    flex: 1 1 0;
+    background: #f7f7f7;
+    border-radius: 14px;
+    padding: 16px;
+    min-height: 170px;
+}
+
+.compare-card .label {
+    font-size: 12px;
+    color: #999;
+    margin-bottom: 8px;
+}
+
+.card-box {
+    background: #fff;
+    border-radius: 12px;
+    padding: 16px;
+    min-height: 120px;
+    border: 1px solid rgba(0, 0, 0, 0.03);
+}
+
+.card-box.empty {
+    display: grid;
+    place-items: center;
+    min-height: 120px;
+    color: #bbb;
+    font-size: 13px;
+    text-align: center;
+}
+
+.card-thumb {
+    width: 46px;
+    height: 46px;
+    border-radius: 10px;
+    background: #e5f0ff;
+    display: grid;
+    place-items: center;
+    font-weight: 600;
+    margin-bottom: 10px;
+}
+
+.card-name {
+    font-size: 15px;
+    margin-bottom: 4px;
+}
+
+.card-benefit {
+    font-size: 13px;
+    color: #666;
+}
+
+.compare-plus {
+    font-size: 32px;
+    font-weight: 300;
+    color: #aaa;
+}
+
+.compare-list {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+}
+
+.compare-item {
+    background: #fff;
+    border: 1px solid #eee;
+    border-radius: 12px;
+    padding: 10px 14px;
+    display: flex;
+    flex-direction: column;
+    min-width: 160px;
+    cursor: pointer;
+    text-align: left;
+    transition: 0.2s;
+}
+
+.compare-item:hover {
+    border-color: #000;
+}
+
+.compare-item.active {
+    border-color: #2a6aff;
+    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.04);
+}
+
+.item-thumb {
+    width: 32px;
+    height: 32px;
+    border-radius: 8px;
+    background: #f0f4ff;
+    display: grid;
+    place-items: center;
+    font-size: 12px;
+    margin-bottom: 6px;
+}
+
+.item-name {
+    font-size: 13px;
+    margin-bottom: 2px;
+}
+
+.item-benefit {
+    font-size: 12px;
+    color: #777;
+}
+
+@media (max-width: 768px) {
+    .compare-body {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .compare-plus {
+        text-align: center;
+    }
+}

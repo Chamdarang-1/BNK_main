@@ -1,20 +1,266 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ko">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>product_views</title>
     <link rel="stylesheet" href="../css/common/header_style.css">
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="../css/product/product_views.css">
     <link rel="stylesheet" href="../css/common/footer_style.css">
 </head>
+
 <body>
     <div id="header"></div>
-    <main>
 
+    <main class="content">
+        <div class="detail-wrap">
+            <section class="card-top">
+                <!-- 왼쪽 카드 -->
+                <div class="card-top-left">
+                    <div class="card-preview">
+                        <img src="https://static11.samsungcard.com/wcms/home/scard/image/personal/IDON_AAP1731.gif"
+                            alt="카드 이미지">
+                    </div>
+                </div>
 
+                <!-- 오른쪽 설명 -->
+                <div class="card-top-right">
+                    <div class="top-head">
+                        <h1 class="card-title">신한카드 Discount Plan</h1>
+                    </div>
+                    <p class="card-sub">계획한 모든 일상에 따라오는 할인</p>
 
+                    <div class="top-benefits">
+                        <p><span>외식 · 배달 · 편의점</span> <strong>10% 할인</strong></p>
+                        <p><span>쇼핑 · 주유 · 생활</span> <strong>5~10% 할인</strong></p>
+                        <p><span>공과금 · 디지털구독</span> <strong>10~20% 할인</strong></p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 연회비 박스 -->
+            <div class="annual-box">
+                <div class="annual-top">
+                    <span class="annual-title">연회비</span>
+                    <a href="javascript:void(0)" class="annual-arrow" id="openFee">›</a>
+                </div>
+                <ul class="annual-rows">
+                    <li>
+                        <span class="annual-type">Visa</span>
+                        <span class="annual-fee-value">본인 300,000원</span>
+                    </li>
+                    <li>
+                        <span class="annual-type">국내전용</span>
+                        <span class="annual-fee-value">본인 300,000원</span>
+                    </li>
+                </ul>
+            </div>
+
+            <!-- 안내 박스 -->
+
+            <!-- 혜택 리스트 -->
+            <section class="benefit-list">
+                <ul>
+                    <li><button type="button">카드이용TIP <span class="chev">›</span></button></li>
+                    <li><button type="button">SELECT 서비스 <span class="chev">›</span></button></li>
+                    <li><button type="button">배달앱 할인 <span class="chev">›</span></button></li>
+                    <li><button type="button">커피전문점 할인 <span class="chev">›</span></button></li>
+                    <li><button type="button">택시/카셰어링 할인 <span class="chev">›</span></button></li>
+                    <li><button type="button">인앱 결제/디지털콘텐츠 할인 <span class="chev">›</span></button></li>
+                    <li><button type="button">해외 할인 <span class="chev">›</span></button></li>
+                    <li><button type="button">카드 디자인 소개 <span class="chev">›</span></button></li>
+                </ul>
+            </section>
+
+            <section class="card-compare-wrap">
+                <div class="compare-title">
+                    <h2>이 카드랑 비교해 보세요.</h2>
+                    <p>아래 목록에서 비교할 카드를 하나 선택하면 오른쪽에 표시됩니다.</p>
+                </div>
+
+                <div class="compare-body">
+                    <!-- 현재 상세보기 중인 카드 (고정) -->
+                    <div class="compare-card current-card" id="currentCard">
+                        <p class="label">현재 보고 있는 카드</p>
+                        <div class="card-box">
+                            <!-- 여기엔 상세보기에서 넘어온 카드 정보 넣기 -->
+                            <div class="card-thumb">A</div>
+                            <h3 class="card-name" id="currentCardName">삼성카드 BIZ 6 V2</h3>
+                            <p class="card-benefit" id="currentCardBenefit">대표 혜택: 비즈니스, 주유, 통신</p>
+                            <!-- 
+                            <h3 class="card-name" th:text="${card.name}">카드명</h3>
+                            <p class="card-benefit" th:text="'대표 혜택: ' + ${card.mainBenefit}">대표 혜택</p>
+                            -->
+                        </div>
+                    </div>
+
+                    <!-- + -->
+                    <div class="compare-plus">+</div>
+
+                    <!-- 비교 대상 카드 (비어있다가 클릭하면 채워짐) -->
+                    <div class="compare-card target-card" id="targetCard">
+                        <p class="label">비교할 카드 선택</p>
+                        <div class="card-box empty">
+                            <p>아래에서 카드를 선택해주세요.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 선택 가능한 카드 목록 -->
+                <div class="compare-list" id="compareList">
+                    <!-- 실제로는 th:each로 돌리면 됨 -->
+                    <button class="compare-item" data-card-id="101" data-card-name="삼성카드 탭탭 O"
+                        data-card-benefit="대표 혜택: 커피, 스트리밍, 쇼핑">
+                        <span class="item-thumb">O</span>
+                        <span class="item-name">삼성카드 탭탭 O</span>
+                        <span class="item-benefit">커피/스트리밍 특화</span>
+                    </button>
+
+                    <button class="compare-item" data-card-id="102" data-card-name="삼성카드 미니멀"
+                        data-card-benefit="대표 혜택: 대중교통, 편의점">
+                        <span class="item-thumb">M</span>
+                        <span class="item-name">삼성카드 미니멀</span>
+                        <span class="item-benefit">교통/편의점</span>
+                    </button>
+
+                    <button class="compare-item" data-card-id="103" data-card-name="삼성카드 주유 플러스"
+                        data-card-benefit="대표 혜택: 주유, 세차">
+                        <span class="item-thumb">P</span>
+                        <span class="item-name">삼성카드 주유 플러스</span>
+                        <span class="item-benefit">주유 특화</span>
+                    </button>
+
+                    <!-- <button class="compare-item" 
+                            th:each="c : ${cardList}" 
+                            th:attr="data-card-id=${c.id},
+                                    data-card-name=${c.name},
+                                    data-card-benefit=${c.summary}">
+                                    카드 명 
+                    </button> -->
+                </div>
+            </section>
+
+            <!-- 하단 고정 버튼 -->
+            <div class="floating-apply">
+                <button type="button" class="btn-main">카드신청</button>
+                <button type="button" class="btn-sub">뒤로가기</button>
+            </div>
+        </div>
     </main>
+
+    <div class="fee-modal" id="feeModal"><!-- 연회비 모달창-->
+        <div class="fee-modal-dim" id="feeDim"></div>
+
+        <div class="fee-modal-box">
+            <div class="fee-modal-header">
+                <h2>연회비</h2>
+                <button type="button" class="fee-modal-close" id="feeClose">✕</button>
+            </div>
+
+            <div class="fee-modal-body">
+                <div class="fee-item">
+                    <h3>국내외겸용(Visa Signature) 300,000원</h3>
+                    <p class="fee-sub">(기본연회비 100,000원 + 제휴연회비 200,000원)</p>
+                    <p class="fee-sub">가족카드 100,000원(기본연회비 0원 + 제휴연회비 100,000원)</p>
+                </div>
+
+                <div class="fee-line"></div>
+
+                <div class="fee-item">
+                    <h3>국내전용 300,000원</h3>
+                    <p class="fee-sub">(기본연회비 100,000원 + 제휴연회비 200,000원)</p>
+                    <p class="fee-sub">가족카드 100,000원(기본연회비 0원 + 제휴연회비 100,000원)</p>
+                </div>
+
+                <ul class="fee-notice">
+                    <li>카드 연회비(기본연회비 + 제휴연회비)는 카드 발급 시 선청구되며, 보유 카드별로 청구</li>
+                    <li>기본연회비는 카드의 발행, 배송 등 발급에 소요된 비용으로, 발급 첫 해에 카드 해지 시에도 반환되지 않음</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+
+
+
     <div id="footer"></div>
+
+    <script> // 헤더 푸터 연결
+
+        document.addEventListener('DOMContentLoaded', function () {
+            // header 로드
+            fetch('../common/header.html')
+                .then(res => res.text())
+                .then(html => {
+                    document.getElementById('header').innerHTML = html;
+
+                    // 스크롤시 헤더 고정 클래스
+                    const headerEl = document.querySelector('.header');
+                    window.addEventListener('scroll', () => {
+                        if (window.scrollY > 10) {
+                            headerEl.classList.add('scrolled');
+                        } else {
+                            headerEl.classList.remove('scrolled');
+                        }
+                    });
+                });
+
+            // footer 로드
+            fetch('../common/footer.html')
+                .then(res => res.text())
+                .then(html => document.getElementById('footer').innerHTML = html);
+        });
+    </script>
+
+    <script> // 모달창 JS
+        document.addEventListener('DOMContentLoaded', function () {
+            const openBtn = document.getElementById('openFee');
+            const modal = document.getElementById('feeModal');
+            const dim = document.getElementById('feeDim');
+            const closeBtn = document.getElementById('feeClose');
+
+            if (openBtn) {
+                openBtn.addEventListener('click', () => {
+                    modal.classList.add('show');
+                });
+            }
+
+            [dim, closeBtn].forEach(el => {
+                el.addEventListener('click', () => {
+                    modal.classList.remove('show');
+                });
+            });
+        });
+    </script>
+
+    <script> // 카드 비교 JS
+        document.addEventListener('DOMContentLoaded', function () {
+            const list = document.getElementById('compareList');
+            const targetBox = document.getElementById('targetCard').querySelector('.card-box');
+
+            list.addEventListener('click', function (e) {
+                const item = e.target.closest('.compare-item');
+                if (!item) return;
+
+                // active 표시 초기화
+                document.querySelectorAll('.compare-item').forEach(btn => btn.classList.remove('active'));
+                item.classList.add('active');
+
+                const name = item.dataset.cardName;
+                const benefit = item.dataset.cardBenefit;
+
+                // 비어있는 상태 해제하고 내용 채우기
+                targetBox.classList.remove('empty');
+                targetBox.innerHTML = `
+        <div class="card-thumb">C</div>
+        <h3 class="card-name">${name}</h3>
+        <p class="card-benefit">${benefit}</p>
+      `;
+            });
+        });
+    </script>
+
 </body>
+
 </html>

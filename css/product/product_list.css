@@ -21,6 +21,8 @@
     display: flex;
     flex-wrap: wrap;
     gap: 8px;
+    max-width: 800px;
+    margin: auto;
     margin-bottom: 36px;
     justify-content: center;
 }
@@ -36,14 +38,14 @@
 }
 
 .filter-btn.active {
-    background: #111;
+    background: #CB2B11;
     color: #fff;
     font-weight: 600;
 }
 
 /* 리스트 타이틀 */
 .list-title {
-    font-size: 16px;
+    font-size: 22px;
     font-weight: 700;
     margin-bottom: 16px;
 }
@@ -95,7 +97,7 @@
 }
 
 .card-name {
-    font-size: 15px;
+    font-size: 18px;
     font-weight: 600;
     margin-bottom: 5px;
 }
@@ -150,4 +152,10 @@
     .card-actions {
         flex-direction: row;
     }
+}
+
+@media (min-width: 1024px) {
+  html {
+    zoom: 125%;
+  }
 }
