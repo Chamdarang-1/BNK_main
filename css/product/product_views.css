@@ -7,7 +7,7 @@
 /* 전체 폭 */
 .content {
     max-width: 800px;
-    margin: 150px auto;
+    margin: 120px auto;
     padding: 0 10px;
 }
 
@@ -174,23 +174,6 @@
     color: #000;
 }
 
-/* 아래 기존 박스 재사용 */
-.card-annc {
-    background: #e7efff;
-    border-radius: 999px;
-    text-align: center;
-    margin: 34px 0 20px;
-    max-width: 430px;
-}
-
-.card-annc a {
-    display: inline-block;
-    padding: 10px 22px 11px;
-    font-size: 12px;
-    color: #2552a5;
-    text-decoration: none;
-}
-
 /* 혜택 목록 박스 */
 .benefit-section {
     margin-top: 32px;
@@ -204,6 +187,8 @@
     gap: 12px;
     border-bottom: 1px solid #ddd;
     padding: 0 0 14px 0;
+    max-width: 695px;
+    margin: auto;
 }
 
 .benefit-header h3 {
@@ -221,9 +206,10 @@
 
 .benefit-grid {
     display: grid;
-    grid-template-columns: repeat(3, minmax(240px, 1fr));
+    grid-template-columns: repeat(2, minmax(220px, 1fr));
     gap: 14px 18px;
-    margin-top: 18px;
+    margin: 18px auto 0;
+    max-width: 695px;
 }
 
 .benefit-card {
@@ -422,6 +408,8 @@
     border-radius: 18px;
     padding: 30px;
     border: 1px solid #eee;
+    max-width: 695px;
+    margin: auto;
 }
 
 .compare-title h2 {
@@ -593,4 +581,132 @@
     border-radius: 8px;
     margin-bottom: 8px;
     background: #eee;
+}
+
+/* 카드 유의사항 드롭다운 */
+.card-notice {
+    margin: 28px auto 0;
+    border-bottom: 1px solid #ddd;
+    padding-bottom: 15px;
+    max-width: 695px;
+}
+
+.card-notice-head {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 12px;
+    padding: 0 0 10px;
+    border-bottom: 1px solid #000;
+    cursor: pointer;
+    margin: auto;
+    max-width: 695px;
+}
+
+.card-notice-head h3 {
+    font-size: 18px;
+    font-weight: 700;
+}
+
+.card-notice-btn {
+    width: 30px;
+    height: 30px;
+    border: 1px solid #000;
+    border-radius: 6px;
+    background: #fff;
+    display: grid;
+    place-items: center;
+    cursor: pointer;
+}
+
+.card-notice-btn .tri {
+    width: 0;
+    height: 0;
+    border-left: 5px solid transparent;
+    border-right: 5px solid transparent;
+    border-top: 6px solid #000;
+    /* ▼ */
+    transition: transform 0.2s;
+}
+
+.card-notice-btn.active .tri {
+    transform: rotate(180deg);
+}
+
+.card-notice-body {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.25s ease;
+    background: #fff;
+    margin: auto;
+    max-width: 695px;
+}
+
+.card-notice-body ul {
+    padding: 14px 0 14px 16px;
+    margin: 0;
+}
+
+.card-notice-body li {
+    font-size: 14px;
+    margin-bottom: 6px;
+    line-height: 1.4;
+}
+
+/* 카드 비교 결과 영역 */
+
+.benefit-compare {
+    margin: 28px auto 0;
+    background: #fff;
+    max-width: 695px;
+}
+
+.benefit-compare h3 {
+    font-size: 16px;
+    margin-bottom: 6px;
+}
+
+.benefit-compare .desc {
+    color: #777;
+    font-size: 13px;
+    margin-bottom: 14px;
+}
+
+.benefit-compare-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(260px, 1fr));
+    gap: 16px;
+}
+
+.benefit-column {
+    background: #f7f7f7;
+    border-radius: 14px;
+    padding: 14px 16px 16px;
+}
+
+.benefit-column h4 {
+    font-size: 14px;
+    margin-bottom: 10px;
+}
+
+.benefit-list {
+    list-style: disc;
+    padding-left: 18px;
+}
+
+.benefit-list li {
+    font-size: 13px;
+    margin-bottom: 4px;
+}
+
+.benefit-list .placeholder {
+    list-style: none;
+    padding-left: 0;
+    color: #aaa;
+}
+
+@media (max-width: 720px) {
+    .benefit-compare-grid {
+        grid-template-columns: 1fr;
+    }
 }
