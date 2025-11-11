@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>카드신청1</title>
+    <link rel="stylesheet" href="../css/common/product_header_style.css">
+    <link rel="stylesheet" href="../css/product/product_register1.css">
+    <link rel="stylesheet" href="../css/common/footer_style.css">
+</head>
+
+<body>
+    <div id="header"></div>
+    <main class="content">
+        <section class="apply-wrap">
+            <div class="apply-box">
+                <h1 class="apply-title">카드 신청</h1>
+
+                <p class="apply-desc">
+                    <strong>십레전드 Ganadi, the due...</strong><br>
+                    카드 신청 페이지 입니다.
+                </p>
+
+                <div class="apply-card-visual">
+                    <img src="https://static11.samsungcard.com/wcms/home/scard/image/personal/IDON_AAP1731.gif"
+                        alt="십레전드 Ganadi, the due...">
+                </div>
+                <p class="apply-info">카드 신청시 본인 확인이 필요합니다.</p>
+
+                <p class="apply-guide">
+                    <span class="guide-highlight">신분증</span>과 <span class="guide-highlight">본인 명의의 계좌</span>를 준비해 주세요.
+                </p>
+
+                </section>
+
+                <button type="button" class="apply-submit">신청 시작</button>
+            </div>
+        </section>
+    </main>
+    <div id="footer"></div>
+</body>
+
+
+
+<script> // 헤더 푸터 연결
+
+    document.addEventListener('DOMContentLoaded', function () {
+        // header 로드
+        fetch('../common/product_header.html')
+            .then(res => res.text())
+            .then(html => {
+                document.getElementById('header').innerHTML = html;
+
+                // 스크롤시 헤더 고정 클래스
+                const headerEl = document.querySelector('.header');
+                window.addEventListener('scroll', () => {
+                    if (window.scrollY > 10) {
+                        headerEl.classList.add('scrolled');
+                    } else {
+                        headerEl.classList.remove('scrolled');
+                    }
+                });
+            });
+
+        // footer 로드
+        fetch('../common/footer.html')
+            .then(res => res.text())
+            .then(html => document.getElementById('footer').innerHTML = html);
+    });
+</script>
+
+
+</html>

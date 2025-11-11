@@ -1,0 +1,20 @@
+<header class="header">
+    <div class="header-inner">
+        <div class="logo">
+            <div class="logo-main">
+                <img src="../images/BNKlogo_red.png" alt="">
+            </div>
+        </div>
+    </div>
+</header>
+
+<script>
+    window.addEventListener('scroll', () => {
+        const header = document.querySelector('.header');
+        if (window.scrollY > 10) {
+            header.classList.add('scrolled');
+        } else {
+            header.classList.remove('scrolled');
+        }
+    });
+</script>

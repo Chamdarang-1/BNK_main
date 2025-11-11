@@ -25,6 +25,8 @@
     border-radius: 20px;
     padding: 40px 45px;
     align-items: center;
+    margin: auto;
+    max-width: 695px;
 }
 
 /* 왼쪽 카드 */
@@ -409,7 +411,7 @@
     padding: 30px;
     border: 1px solid #eee;
     max-width: 695px;
-    margin: auto;
+    margin: 20px auto;
 }
 
 .compare-title h2 {
@@ -485,7 +487,7 @@
     color: #bbb;
 }
 
-/* 모달 */
+/* 카드 비교 모달 */
 .card-modal-overlay {
     position: fixed;
     inset: 0;
@@ -539,38 +541,47 @@
     border: 1px solid #f1f1f1;
     background: #fff;
     border-radius: 12px;
-    padding: 10px;
+    padding: 10px 12px;
     margin-bottom: 10px;
     cursor: pointer;
     transition: 0.15s;
 }
 
 .modal-card-item:hover {
-    border-color: #ff6a00;
-    background: #fff7f0;
+    border-color: #000;
+    background: #f9f9f9;
 }
 
-.modal-card-item .item-thumb {
-    width: 38px;
-    height: 38px;
-    border-radius: 10px;
-    background: #f0f4ff;
+.modal-card-thumb {
+    width: 60px;
+    height: 90px;
+    border-radius: 8px;
+    background: #eee;
+    overflow: hidden;
+    flex: 0 0 58px;
     display: grid;
     place-items: center;
-    font-size: 13px;
 }
 
-.modal-card-item .item-text {
+.modal-card-thumb img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+.modal-card-info {
     display: flex;
     flex-direction: column;
-    gap: 2px;
+    gap: 3px;
 }
 
-.modal-card-item .item-name {
+.modal-card-name {
     font-size: 14px;
+    font-weight: 500;
+    color: #222;
 }
 
-.modal-card-item .item-benefit {
+.modal-card-benefit {
     font-size: 12px;
     color: #666;
 }
@@ -653,10 +664,16 @@
     line-height: 1.4;
 }
 
+.card-notice-body .notice-text {
+    font-size: 13px;
+    line-height: 1.5;
+    margin: 12px 0 8px;
+}
+
 /* 카드 비교 결과 영역 */
 
 .benefit-compare {
-    margin: 28px auto 0;
+    margin: -10px auto 0;
     background: #fff;
     max-width: 695px;
 }
@@ -675,7 +692,7 @@
 .benefit-compare-grid {
     display: grid;
     grid-template-columns: repeat(2, minmax(260px, 1fr));
-    gap: 16px;
+    gap: 70px;
 }
 
 .benefit-column {
@@ -709,4 +726,46 @@
     .benefit-compare-grid {
         grid-template-columns: 1fr;
     }
+}
+
+/* 필수 안내사항 */
+.must-guide {
+    margin: 28px auto 0;
+    background: #f4f6fb;
+    border: 1px solid #e0e3ea;
+    border-radius: 18px;
+    padding: 18px 20px 20px;
+    max-width: 695px;
+}
+
+.must-guide h3 {
+    font-size: 15px;
+    font-weight: 700;
+    margin-bottom: 10px;
+}
+
+.must-guide>ul {
+    list-style: disc;
+    padding-left: 18px;
+    margin: 0;
+}
+
+.must-guide>ul>li {
+    font-size: 13px;
+    line-height: 1.5;
+    margin-bottom: 6px;
+    color: #222;
+}
+
+.must-guide ul ul {
+    list-style: "– ";
+    padding-left: 14px;
+    margin-top: 4px;
+}
+
+.must-guide ul ul li {
+    font-size: 12.5px;
+    line-height: 1.45;
+    color: #444;
+    margin-bottom: 3px;
 }
