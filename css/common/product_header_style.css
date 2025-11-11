@@ -34,7 +34,7 @@ body {
 
 .header-inner {
     max-width: 800px;
-    margin: 0 auto 0;
+    margin: 2px auto 2px;
     display: flex;
     align-items: center;
     height: var(--header-h);
@@ -50,7 +50,6 @@ body {
 }
 
 .logo-main {
-    padding-top: 5px;
     line-height: 22px;
 }
 

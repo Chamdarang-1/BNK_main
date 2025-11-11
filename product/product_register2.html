@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>카드신청 - 기본 정보</title>
+    <link rel="stylesheet" href="../css/common/product_header_style.css" />
+    <link rel="stylesheet" href="../css/product/product_register2.css" />
+    <link rel="stylesheet" href="../css/common/footer_style.css" />
+</head>
+
+<body>
+    <div id="header"></div>
+
+    <main class="content">
+        <section class="apply-form-wrap">
+            <div class="apply-form-box">
+                <header class="apply-form-header">
+                    <h1>기본 정보 입력 후 동의 여부를 확인해 주세요</h1>
+
+                    <!-- 국적 선택 드롭다운 -->
+                    <div class="nation-select-wrap">
+                        <button type="button" class="nation-select" id="nationBtn">
+                            <span id="nationLabel">내국인</span>
+                            <span class="chev">▼</span>
+                        </button>
+                        <ul class="nation-list" id="nationList">
+                            <li data-value="내국인">내국인</li>
+                            <li data-value="외국인">외국인</li>
+                        </ul>
+                    </div>
+                </header>
+
+                <div class="apply-form-body">
+                    <!-- 이름 -->
+                    <div class="form-item">
+                        <label for="name">이름</label>
+                        <input id="name" type="text" placeholder="이름을 입력해 주세요." value="박요셉" />
+                    </div>
+
+                    <!-- 영문 이름 -->
+                    <div class="form-2col">
+                        <div class="form-item">
+                            <label for="ename-last">영문 성</label>
+                            <input id="ename-last" type="text" placeholder="KIM" />
+                        </div>
+                        <div class="form-item">
+                            <label for="ename-first">영문 이름</label>
+                            <input id="ename-first" type="text" placeholder="CHEOLSU" />
+                            <p class="field-help">여권과 동일한 영문명을 입력해 주세요.</p>
+                        </div>
+                    </div>
+
+                    <!-- 주민등록번호 -->
+                    <div class="form-item">
+                        <label>주민등록번호</label>
+                        <div class="rrn-field">
+                            <!-- 앞 6자리 -->
+                            <input type="text" class="rrn-front" inputmode="numeric" maxlength="6"
+                                placeholder="생년월일 6자리">
+
+                            <span class="dash">-</span>
+
+                            <!-- 뒤 7자리 (마스킹) -->
+                            <input type="text" class="rrn-back secret-input" inputmode="numeric" maxlength="7"
+                                aria-label="주민등록번호 뒤 7자리 입력">
+                        </div>
+                    </div>
+
+                    <!-- 휴대폰번호 -->
+                    <div class="form-item">
+                        <label for="phone">휴대폰번호</label>
+                        <input id="phone" type="text" inputmode="numeric" maxlength="11" placeholder="숫자만 입력해 주세요.">
+                    </div>
+
+                    <!-- 전체 동의 영역 -->
+                    <section class="agree-section">
+                        <div class="agree-all-row">
+                            <button type="button" class="agree-all-btn">
+                                <span class="agree-check"></span>
+                                <span class="agree-all-title">전체 동의</span>
+                            </button>
+                            <p class="agree-all-desc">아래 개인정보(신용)정보 필수/선택 동의 항목에 모두 동의합니다.</p>
+                        </div>
+
+                        <!-- 리스트 박스 -->
+                        <div class="agree-list-box">
+                            <!-- 1. 현대카드 개인정보(신용)정보 필수적 동의 -->
+                            <div class="agree-row">
+                                <button type="button" class="agree-head">
+                                    <span class="left">
+                                        <span class="agree-check"></span>
+                                        현대카드 개인정보(신용)정보 필수적 동의
+                                    </span>
+                                    <span class="right">›</span>
+                                </button>
+                                <div class="agree-body">
+                                    <ul>
+                                        <li>개인(신용)정보 필수적 수집·이용에 관한 사항</li>
+                                        <li>고유식별정보 필수적 수집·이용에 관한 사항</li>
+                                        <li>개인(신용)정보 조회에 관한 사항</li>
+                                        <li>고유식별정보 조회에 관한 사항</li>
+                                        <li>개인(신용)정보 필수적 제공에 관한 사항</li>
+                                        <li>고유식별정보 필수적 제공에 관한 사항</li>
+                                        <li>(통신단말장치) 개인(신용)정보 수집·이용에 관한 사항</li>
+                                        <li>(통신단말장치) 고유식별정보 수집·이용에 관한 사항</li>
+                                        <li>(통신단말장치) 개인(신용)정보 제공에 관한 사항</li>
+                                        <li>(통신단말장치) 고유식별정보 제공에 관한 사항</li>
+                                        <li>개인(신용)정보 필수적 제공에 관한 사항(상품서비스)</li>
+                                    </ul>
+                                </div>
+                            </div>
+
+                            <!-- 2. 선택적 동의 -->
+                            <div class="agree-row">
+                                <button type="button" class="agree-head">
+                                    <span class="left">
+                                        <span class="agree-check"></span>
+                                        개인(신용)정보 선택적 동의
+                                    </span>
+                                    <span class="right">›</span>
+                                </button>
+                                <div class="agree-body">
+                                    <p class="agree-body-desc">
+                                        동의 시 편의 제공(사은품, 할인 쿠폰 등), 신상품(서비스)소개, 발급 관련 편의(심사 우대, 미열료 및 발급 불가 안내) 등
+                                        다양한 혜택을 안내해 드립니다. 미동의 시에도 카드 발급이 가능합니다.
+                                    </p>
+                                    <ul>
+                                        <li>카드 상품 안내 및 이용 권유를 위한 수집·이용</li>
+                                        <li>카드 상품 이외의 부가서비스 안내 등을 위한 수집·이용</li>
+                                        <li>업무 제휴 계약을 체결한 제휴업체에 분석 및 마케팅 목적 제공</li>
+                                        <li>전자적 전송매체를 통한 광고성 정보 수신 동의</li>
+                                        <li>카카오톡 메시지 수신 동의</li>
+                                        <li>앱 PUSH 동의</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+
+                        <button type="button" class="agree-submit">확인</button>
+                    </section>
+                </div>
+            </div>
+
+            <!-- 동의 리스트 박스 -->
+
+        </section>
+    </main>
+
+    <div id="footer"></div>
+
+    <script> // 헤더 푸터 js
+        // 헤더/푸터 로드 (네가 쓰던 거 그대로)
+        document.addEventListener('DOMContentLoaded', function () {
+            fetch('../common/product_header.html')
+                .then(res => res.text())
+                .then(html => {
+                    document.getElementById('header').innerHTML = html;
+                    const headerEl = document.querySelector('.header');
+                    window.addEventListener('scroll', () => {
+                        if (window.scrollY > 10) headerEl.classList.add('scrolled');
+                        else headerEl.classList.remove('scrolled');
+                    });
+                });
+
+            fetch('../common/footer.html')
+                .then(res => res.text())
+                .then(html => (document.getElementById('footer').innerHTML = html));
+        });
+    </script>
+
+    <script> // 내/외국인 드롭다운 js
+        document.addEventListener('DOMContentLoaded', function () {
+            const btn = document.getElementById('nationBtn');
+            const list = document.getElementById('nationList');
+            const label = document.getElementById('nationLabel');
+
+            if (!btn || !list || !label) return;
+
+            // 버튼 눌렀을 때 열고 닫기
+            btn.addEventListener('click', function (e) {
+                e.stopPropagation(); // 바깥 클릭 이벤트와 충돌 방지
+                const isOpen = list.style.display === 'block';
+                list.style.display = isOpen ? 'none' : 'block';
+            });
+
+            // 항목 선택
+            list.addEventListener('click', function (e) {
+                const li = e.target.closest('li');
+                if (!li) return;
+                const value = li.dataset.value;
+                label.textContent = value;
+                list.style.display = 'none';
+                // 필요하면 여기서 value에 따라 폼 다른 거 보여주기
+            });
+
+            // 바깥 클릭하면 닫기
+            document.addEventListener('click', function () {
+                list.style.display = 'none';
+            });
+        });
+    </script>
+
+    <script> // 주민등록번호 뒷자리 JS
+        document.addEventListener('DOMContentLoaded', function () {
+            const backInput = document.querySelector('.rrn-back-input');
+            const dots = document.querySelectorAll('.rrn-dots .dot');
+
+            if (!backInput) return;
+
+            backInput.addEventListener('input', function () {
+                const len = backInput.value.length;
+                dots.forEach((dot, idx) => {
+                    if (idx < len) {
+                        dot.style.opacity = '1';
+                    } else {
+                        dot.style.opacity = '.45';
+                    }
+                });
+            });
+        });
+    </script>
+
+    <script> // 휴대폰 번호 입력 글자 제한 JS
+        document.addEventListener('DOMContentLoaded', function () {
+            const phoneInput = document.getElementById('phone');
+            if (!phoneInput) return;
+
+            phoneInput.addEventListener('input', function () {
+                // 숫자만 남기기
+                let onlyNum = this.value.replace(/\D/g, '');
+                // 11자리까지만
+                if (onlyNum.length > 11) {
+                    onlyNum = onlyNum.slice(0, 11);
+                }
+                this.value = onlyNum;
+            });
+        });
+    </script>
+
+    <script> // 
+        document.addEventListener('DOMContentLoaded', function () {
+            const allBtn = document.querySelector('.agree-all-btn');
+            const allCheck = document.querySelector('.agree-all-btn .agree-check');
+            const rowHeads = document.querySelectorAll('.agree-row .agree-head');
+
+            // 개별 체크 span들
+            const rowChecks = document.querySelectorAll('.agree-row .agree-check');
+
+            // 상세 내용은 기본적으로 닫아두기
+            document.querySelectorAll('.agree-body').forEach(body => {
+                body.style.display = 'none';
+            });
+
+            // 전체 동의 클릭 시
+            allBtn.addEventListener('click', function () {
+                const willCheck = !allCheck.classList.contains('on');
+                // 전체 아이콘
+                allCheck.classList.toggle('on', willCheck);
+                // 개별 아이콘 전부
+                rowChecks.forEach(chk => chk.classList.toggle('on', willCheck));
+            });
+
+            // 각 항목 제목 클릭 시
+            rowHeads.forEach(head => {
+                head.addEventListener('click', function () {
+                    const chk = head.querySelector('.agree-check');
+                    const body = head.nextElementSibling;
+
+                    // 체크 토글
+                    chk.classList.toggle('on');
+
+                    // 상세 있으면 열고닫기
+                    if (body && body.classList.contains('agree-body')) {
+                        const opened = body.style.display === 'block';
+                        body.style.display = opened ? 'none' : 'block';
+                    }
+
+                    // 개별들 상태 보고 전체 동의도 조절
+                    const everyOn = Array.from(rowChecks).every(c => c.classList.contains('on'));
+                    allCheck.classList.toggle('on', everyOn);
+                });
+            });
+        });
+    </script>
+
+
+</body>
+
+</html>
