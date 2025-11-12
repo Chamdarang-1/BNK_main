@@ -36,7 +36,7 @@
                     <!-- 이름 -->
                     <div class="form-item">
                         <label for="name">이름</label>
-                        <input id="name" type="text" placeholder="이름을 입력해 주세요." value="박요셉" />
+                        <input id="name" type="text" placeholder="이름을 입력해 주세요." />
                     </div>
 
                     <!-- 영문 이름 -->
@@ -74,6 +74,12 @@
                         <input id="phone" type="text" inputmode="numeric" maxlength="11" placeholder="숫자만 입력해 주세요.">
                     </div>
 
+                    <!-- 이메일  -->
+                    <div class="form-item">
+                        <label for="email">이메일</label>
+                        <input id="email" type="text" placeholder="이메일을 입력해 주세요." />
+                    </div>
+
                     <!-- 전체 동의 영역 -->
                     <section class="agree-section">
                         <div class="agree-all-row">
@@ -86,12 +92,12 @@
 
                         <!-- 리스트 박스 -->
                         <div class="agree-list-box">
-                            <!-- 1. 현대카드 개인정보(신용)정보 필수적 동의 -->
-                            <div class="agree-row">
+                            <!-- 1. 개인정보(신용)정보 필수적 동의 -->
+                            <div class="agree-row required">
                                 <button type="button" class="agree-head">
                                     <span class="left">
                                         <span class="agree-check"></span>
-                                        현대카드 개인정보(신용)정보 필수적 동의
+                                        개인정보(신용)정보 필수적 동의
                                     </span>
                                     <span class="right">›</span>
                                 </button>
@@ -117,7 +123,7 @@
                                 <button type="button" class="agree-head">
                                     <span class="left">
                                         <span class="agree-check"></span>
-                                        개인(신용)정보 선택적 동의
+                                        개인(신용)정보 선택적 동의 (선택)
                                     </span>
                                     <span class="right">›</span>
                                 </button>
@@ -136,156 +142,158 @@
                                     </ul>
                                 </div>
                             </div>
+                            <div class="agree-row required">
+                                <button type="button" class="agree-head">
+                                    <span class="left">
+                                        <span class="agree-check"></span>
+                                        카드 신청 관련 안내 필수적 동의
+                                    </span>
+                                    <span class="right">›</span>
+                                </button>
+                            </div>
                         </div>
-
-                        <button type="button" class="agree-submit">확인</button>
+                        <button class="btn-submit" id="submitBtn" disabled>확인</button>
                     </section>
                 </div>
             </div>
-
-            <!-- 동의 리스트 박스 -->
-
         </section>
     </main>
 
     <div id="footer"></div>
 
-    <script> // 헤더 푸터 js
-        // 헤더/푸터 로드 (네가 쓰던 거 그대로)
+    <script>
         document.addEventListener('DOMContentLoaded', function () {
+            /* 1) 헤더/푸터 로드 */
             fetch('../common/product_header.html')
                 .then(res => res.text())
                 .then(html => {
                     document.getElementById('header').innerHTML = html;
                     const headerEl = document.querySelector('.header');
-                    window.addEventListener('scroll', () => {
-                        if (window.scrollY > 10) headerEl.classList.add('scrolled');
-                        else headerEl.classList.remove('scrolled');
-                    });
+                    if (headerEl) {
+                        window.addEventListener('scroll', () => {
+                            if (window.scrollY > 10) headerEl.classList.add('scrolled');
+                            else headerEl.classList.remove('scrolled');
+                        });
+                    }
                 });
 
             fetch('../common/footer.html')
                 .then(res => res.text())
                 .then(html => (document.getElementById('footer').innerHTML = html));
-        });
-    </script>
 
-    <script> // 내/외국인 드롭다운 js
-        document.addEventListener('DOMContentLoaded', function () {
+            /* 2) 내/외국인 드롭다운 */
             const btn = document.getElementById('nationBtn');
             const list = document.getElementById('nationList');
             const label = document.getElementById('nationLabel');
 
-            if (!btn || !list || !label) return;
-
-            // 버튼 눌렀을 때 열고 닫기
-            btn.addEventListener('click', function (e) {
-                e.stopPropagation(); // 바깥 클릭 이벤트와 충돌 방지
-                const isOpen = list.style.display === 'block';
-                list.style.display = isOpen ? 'none' : 'block';
-            });
-
-            // 항목 선택
-            list.addEventListener('click', function (e) {
-                const li = e.target.closest('li');
-                if (!li) return;
-                const value = li.dataset.value;
-                label.textContent = value;
-                list.style.display = 'none';
-                // 필요하면 여기서 value에 따라 폼 다른 거 보여주기
-            });
-
-            // 바깥 클릭하면 닫기
-            document.addEventListener('click', function () {
-                list.style.display = 'none';
-            });
-        });
-    </script>
-
-    <script> // 주민등록번호 뒷자리 JS
-        document.addEventListener('DOMContentLoaded', function () {
-            const backInput = document.querySelector('.rrn-back-input');
-            const dots = document.querySelectorAll('.rrn-dots .dot');
-
-            if (!backInput) return;
-
-            backInput.addEventListener('input', function () {
-                const len = backInput.value.length;
-                dots.forEach((dot, idx) => {
-                    if (idx < len) {
-                        dot.style.opacity = '1';
-                    } else {
-                        dot.style.opacity = '.45';
-                    }
+            if (btn && list && label) {
+                btn.addEventListener('click', function (e) {
+                    e.stopPropagation();
+                    const isOpen = list.style.display === 'block';
+                    list.style.display = isOpen ? 'none' : 'block';
                 });
-            });
-        });
-    </script>
 
-    <script> // 휴대폰 번호 입력 글자 제한 JS
-        document.addEventListener('DOMContentLoaded', function () {
+                list.addEventListener('click', function (e) {
+                    const li = e.target.closest('li');
+                    if (!li) return;
+                    label.textContent = li.dataset.value;
+                    list.style.display = 'none';
+                });
+
+                document.addEventListener('click', function () {
+                    list.style.display = 'none';
+                });
+            }
+
+            /* 3) 휴대폰 11자리 숫자만 */
             const phoneInput = document.getElementById('phone');
-            if (!phoneInput) return;
+            if (phoneInput) {
+                phoneInput.addEventListener('input', function () {
+                    let onlyNum = this.value.replace(/\D/g, '');
+                    if (onlyNum.length > 11) onlyNum = onlyNum.slice(0, 11);
+                    this.value = onlyNum;
+                });
+            }
 
-            phoneInput.addEventListener('input', function () {
-                // 숫자만 남기기
-                let onlyNum = this.value.replace(/\D/g, '');
-                // 11자리까지만
-                if (onlyNum.length > 11) {
-                    onlyNum = onlyNum.slice(0, 11);
-                }
-                this.value = onlyNum;
-            });
-        });
-    </script>
-
-    <script> // 
-        document.addEventListener('DOMContentLoaded', function () {
+            /* 4) 전체 동의 ↔ 개별 동의 (체크와 펼침 분리) */
             const allBtn = document.querySelector('.agree-all-btn');
             const allCheck = document.querySelector('.agree-all-btn .agree-check');
-            const rowHeads = document.querySelectorAll('.agree-row .agree-head');
+            const rows = document.querySelectorAll('.agree-row');
+            const submitBtn = document.getElementById('submitBtn');
 
-            // 개별 체크 span들
-            const rowChecks = document.querySelectorAll('.agree-row .agree-check');
-
-            // 상세 내용은 기본적으로 닫아두기
+            // 상세는 기본 닫기
             document.querySelectorAll('.agree-body').forEach(body => {
                 body.style.display = 'none';
             });
 
-            // 전체 동의 클릭 시
-            allBtn.addEventListener('click', function () {
-                const willCheck = !allCheck.classList.contains('on');
-                // 전체 아이콘
-                allCheck.classList.toggle('on', willCheck);
-                // 개별 아이콘 전부
-                rowChecks.forEach(chk => chk.classList.toggle('on', willCheck));
-            });
+            // 버튼 활성화 갱신: 필수 행들의 체크가 모두 on 이어야 함
+            function refreshSubmit() {
+                const requiredChecks = document.querySelectorAll('.agree-row.required .agree-check');
+                const allRequiredOn = Array.from(requiredChecks).every(c => c.classList.contains('on'));
+                if (submitBtn) submitBtn.disabled = !allRequiredOn;
+            }
 
-            // 각 항목 제목 클릭 시
-            rowHeads.forEach(head => {
-                head.addEventListener('click', function () {
-                    const chk = head.querySelector('.agree-check');
-                    const body = head.nextElementSibling;
+            // 전체 동의 클릭 시 개별 체크 on/off
+            if (allBtn && allCheck) {
+                allBtn.addEventListener('click', function () {
+                    const willCheck = !allCheck.classList.contains('on');
+                    allCheck.classList.toggle('on', willCheck);
+                    rows.forEach(row => {
+                        const chk = row.querySelector('.agree-check');
+                        if (chk) chk.classList.toggle('on', willCheck);
+                    });
+                    refreshSubmit(); // ← 추가
+                });
+            }
 
-                    // 체크 토글
+            // 개별 행
+            rows.forEach(row => {
+                const head = row.querySelector('.agree-head');
+                const left = row.querySelector('.agree-head .left');   // 체크 토글 영역
+                const chev = row.querySelector('.agree-head .right');  // 펼침/접힘 버튼
+                const chk = row.querySelector('.agree-check');
+                const body = row.querySelector('.agree-body');
+
+                if (!head || !left || !chk) return;
+
+                // 왼쪽(동그라미+문구) 클릭 → 체크 토글만
+                left.addEventListener('click', (e) => {
+                    e.stopPropagation();
                     chk.classList.toggle('on');
 
-                    // 상세 있으면 열고닫기
-                    if (body && body.classList.contains('agree-body')) {
+                    // 전체 동의와 동기화
+                    const everyOn = Array.from(document.querySelectorAll('.agree-row .agree-check'))
+                        .every(c => c.classList.contains('on'));
+                    allCheck.classList.toggle('on', everyOn);
+
+                    refreshSubmit(); // ← 추가
+                });
+
+                // 오른쪽 화살표 클릭 → 상세 펼치기/닫기만
+                if (chev && body) {
+                    chev.style.cursor = 'pointer';
+                    chev.addEventListener('click', (e) => {
+                        e.stopPropagation();
                         const opened = body.style.display === 'block';
                         body.style.display = opened ? 'none' : 'block';
-                    }
-
-                    // 개별들 상태 보고 전체 동의도 조절
-                    const everyOn = Array.from(rowChecks).every(c => c.classList.contains('on'));
-                    allCheck.classList.toggle('on', everyOn);
-                });
+                    });
+                }
             });
+
+            // 초기 상태 평가
+            refreshSubmit();
         });
     </script>
+
 
 
 </body>
 
 </html>
+
+<!-- 
+유효성 검사 추가하기
+약관동의 항목 유효성 검사 ㅇㅇ;;
+
+ㅅㅂ 언제 끝나
+  -->

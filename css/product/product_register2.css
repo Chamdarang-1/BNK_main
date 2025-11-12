@@ -290,14 +290,20 @@
     margin-bottom: 3px;
 }
 
-.agree-submit {
+.btn-submit {
     width: 100%;
-    margin-top: 14px;
-    background: #d0d0d0;
+    height: 52px;
     border: none;
     border-radius: 14px;
-    padding: 12px 0;
-    font-size: 14px;
+    background: #d4d4d4;
+    color: #fff;
+    font-weight: 800;
+    cursor: not-allowed;
+    margin-top: 15px;
+}
+
+.btn-submit:not(:disabled) {
+    background: #CB2B11;
     cursor: pointer;
 }
 
