@@ -80,11 +80,12 @@
                         <input id="email" type="text" placeholder="이메일을 입력해 주세요." />
                     </div>
 
-                    <!-- 전체 동의 영역 -->
+                    <!-- ===== 약관 동의 영역 (기억해둔 패턴) ===== -->
                     <section class="agree-section">
+                        <!-- 전체 동의 -->
                         <div class="agree-all-row">
-                            <button type="button" class="agree-all-btn">
-                                <span class="agree-check"></span>
+                            <button type="button" class="agree-all-btn" aria-pressed="false">
+                                <span class="agree-check" aria-hidden="true"></span>
                                 <span class="agree-all-title">전체 동의</span>
                             </button>
                             <p class="agree-all-desc">아래 개인정보(신용)정보 필수/선택 동의 항목에 모두 동의합니다.</p>
@@ -92,15 +93,15 @@
 
                         <!-- 리스트 박스 -->
                         <div class="agree-list-box">
-                            <!-- 1. 개인정보(신용)정보 필수적 동의 -->
+                            <!-- 1. 개인정보(신용)정보 필수적 동의 (필수) -->
                             <div class="agree-row required">
-                                <button type="button" class="agree-head">
+                                <div class="agree-head" aria-expanded="false">
                                     <span class="left">
-                                        <span class="agree-check"></span>
-                                        개인정보(신용)정보 필수적 동의
+                                        <span class="agree-check" aria-hidden="true"></span>
+                                        개인정보(신용)정보 필수적 동의 (필수)
                                     </span>
-                                    <span class="right">›</span>
-                                </button>
+                                    <span class="right" aria-hidden="true">›</span>
+                                </div>
                                 <div class="agree-body">
                                     <ul>
                                         <li>개인(신용)정보 필수적 수집·이용에 관한 사항</li>
@@ -118,15 +119,15 @@
                                 </div>
                             </div>
 
-                            <!-- 2. 선택적 동의 -->
+                            <!-- 2. 선택적 동의 (선택) -->
                             <div class="agree-row">
-                                <button type="button" class="agree-head">
+                                <div class="agree-head" aria-expanded="false">
                                     <span class="left">
-                                        <span class="agree-check"></span>
+                                        <span class="agree-check" aria-hidden="true"></span>
                                         개인(신용)정보 선택적 동의 (선택)
                                     </span>
-                                    <span class="right">›</span>
-                                </button>
+                                    <span class="right" aria-hidden="true">›</span>
+                                </div>
                                 <div class="agree-body">
                                     <p class="agree-body-desc">
                                         동의 시 편의 제공(사은품, 할인 쿠폰 등), 신상품(서비스)소개, 발급 관련 편의(심사 우대, 미열료 및 발급 불가 안내) 등
@@ -142,16 +143,20 @@
                                     </ul>
                                 </div>
                             </div>
+
+                            <!-- 3. 카드 신청 관련 안내 필수적 동의 (필수/본문 없음) -->
                             <div class="agree-row required">
-                                <button type="button" class="agree-head">
+                                <div class="agree-head" aria-expanded="false">
                                     <span class="left">
-                                        <span class="agree-check"></span>
-                                        카드 신청 관련 안내 필수적 동의
+                                        <span class="agree-check" aria-hidden="true"></span>
+                                        카드 신청 관련 안내 필수적 동의 (필수)
                                     </span>
-                                    <span class="right">›</span>
-                                </button>
+                                    <!-- 본문이 없으니 화살표는 출력만, 동작은 없음 -->
+                                    <span class="right" aria-hidden="true">›</span>
+                                </div>
                             </div>
                         </div>
+
                         <button class="btn-submit" id="submitBtn" disabled>확인</button>
                     </section>
                 </div>
@@ -215,46 +220,48 @@
                 });
             }
 
-            /* 4) 전체 동의 ↔ 개별 동의 (체크와 펼침 분리) */
+            /* 4) 약관 동의 (전체동의 + 개별동의 + 스르륵 펼침) */
             const allBtn = document.querySelector('.agree-all-btn');
             const allCheck = document.querySelector('.agree-all-btn .agree-check');
             const rows = document.querySelectorAll('.agree-row');
             const submitBtn = document.getElementById('submitBtn');
 
-            // 상세는 기본 닫기
-            document.querySelectorAll('.agree-body').forEach(body => {
-                body.style.display = 'none';
-            });
-
-            // 버튼 활성화 갱신: 필수 행들의 체크가 모두 on 이어야 함
+            // 필수 약관 모두 체크됐는지
             function refreshSubmit() {
-                const requiredChecks = document.querySelectorAll('.agree-row.required .agree-check');
+                const requiredChecks = document.querySelectorAll('.agree-row.required .agree-head .agree-check');
                 const allRequiredOn = Array.from(requiredChecks).every(c => c.classList.contains('on'));
                 if (submitBtn) submitBtn.disabled = !allRequiredOn;
             }
 
-            // 전체 동의 클릭 시 개별 체크 on/off
-            if (allBtn && allCheck) {
-                allBtn.addEventListener('click', function () {
-                    const willCheck = !allCheck.classList.contains('on');
-                    allCheck.classList.toggle('on', willCheck);
-                    rows.forEach(row => {
-                        const chk = row.querySelector('.agree-check');
-                        if (chk) chk.classList.toggle('on', willCheck);
+            // 전체동의 아이콘 + 버튼 상태 동기화
+            function syncAllAndButton() {
+                const everyOn = Array.from(rows)
+                    .every(r => {
+                        const icon = r.querySelector('.agree-head .agree-check');
+                        return icon && icon.classList.contains('on');
                     });
-                    refreshSubmit(); // ← 추가
-                });
+
+                if (allCheck) {
+                    allCheck.classList.toggle('on', everyOn);
+                }
+                refreshSubmit();
             }
 
-            // 개별 행
+            // 개별 행 설정
             rows.forEach(row => {
                 const head = row.querySelector('.agree-head');
-                const left = row.querySelector('.agree-head .left');   // 체크 토글 영역
-                const chev = row.querySelector('.agree-head .right');  // 펼침/접힘 버튼
-                const chk = row.querySelector('.agree-check');
-                const body = row.querySelector('.agree-body');
+                const left = head ? head.querySelector('.left') : null;           // 체크/문구 영역
+                const chev = head ? head.querySelector('.right') : null;          // 펼치기 화살표
+                const chk = head ? head.querySelector('.agree-check') : null;     // 동그라미
+                const body = row.querySelector('.agree-body');                    // 상세 내용 (없을 수도 있음)
 
                 if (!head || !left || !chk) return;
+
+                // 초기 상태 : 접힘
+                if (body) {
+                    head.setAttribute('aria-expanded', 'false');
+                    body.classList.remove('open'); // CSS에서 max-height 0 상태
+                }
 
                 // 왼쪽(동그라미+문구) 클릭 → 체크 토글만
                 left.addEventListener('click', (e) => {
@@ -262,38 +269,54 @@
                     chk.classList.toggle('on');
 
                     // 전체 동의와 동기화
-                    const everyOn = Array.from(document.querySelectorAll('.agree-row .agree-check'))
+                    const everyOn = Array.from(document.querySelectorAll('.agree-row .agree-head .agree-check'))
                         .every(c => c.classList.contains('on'));
-                    allCheck.classList.toggle('on', everyOn);
+                    if (allCheck) {
+                        allCheck.classList.toggle('on', everyOn);
+                    }
 
-                    refreshSubmit(); // ← 추가
+                    refreshSubmit();
                 });
 
-                // 오른쪽 화살표 클릭 → 상세 펼치기/닫기만
+                // 오른쪽 화살표 클릭 → 상세 펼치기/닫기만 (본문 있는 경우에만)
                 if (chev && body) {
                     chev.style.cursor = 'pointer';
                     chev.addEventListener('click', (e) => {
                         e.stopPropagation();
-                        const opened = body.style.display === 'block';
-                        body.style.display = opened ? 'none' : 'block';
+                        const opened = head.getAttribute('aria-expanded') === 'true';
+                        if (opened) {
+                            head.setAttribute('aria-expanded', 'false');
+                            body.classList.remove('open');   // 접기
+                        } else {
+                            head.setAttribute('aria-expanded', 'true');
+                            body.classList.add('open');      // 펼치기
+                        }
                     });
                 }
             });
 
-            // 초기 상태 평가
+            // 전체 동의 버튼 → 모든 동그라미 on/off (펼치기 상태는 그대로)
+            if (allBtn && allCheck) {
+                allBtn.addEventListener('click', () => {
+                    const willCheck = !allCheck.classList.contains('on');
+                    allCheck.classList.toggle('on', willCheck);
+
+                    rows.forEach(row => {
+                        const icon = row.querySelector('.agree-head .agree-check');
+                        if (icon) {
+                            icon.classList.toggle('on', willCheck);
+                        }
+                    });
+
+                    refreshSubmit();
+                });
+            }
+
+            // 초기 상태 반영
             refreshSubmit();
         });
     </script>
 
-
-
 </body>
 
 </html>
-
-<!-- 
-유효성 검사 추가하기
-약관동의 항목 유효성 검사 ㅇㅇ;;
-
-ㅅㅂ 언제 끝나
-  -->
