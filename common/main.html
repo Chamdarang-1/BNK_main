@@ -61,24 +61,22 @@
                 </div>
             </section>
             <section class="box box-side">
-                <div class="login-card new">
-                    <!-- 탭 -->
+                <div class="login-card new" id="mainLoginCard">
+
+                    <!-- (로그인 전) -->
                     <div class="login-tabs2">
                         <button class="tab2 active" data-tab="id">로그인</button>
                     </div>
 
-                    <!-- 탭 내용들 -->
-                    <div class="login-panels2">
-
-                        <!-- 아이디 -->
+                    <div class="login-panels2" id="loginPanel">
                         <div class="panel2 show" id="panel-id">
                             <label class="input2">
-                                <input type="text" placeholder="아이디 6~12자리 입력">
+                                <input type="text" id="mainLoginId" placeholder="아이디 6~12자리 입력">
                             </label>
                             <label class="input2">
-                                <input type="password" placeholder="비밀번호 6~20자리 입력">
+                                <input type="password" id="mainLoginPw" placeholder="비밀번호 6~20자리 입력">
                             </label>
-                            <button class="red-btn">로그인</button>
+                            <button class="red-btn" id="btnMainLogin">로그인</button>
                             <div class="panel-links">
                                 <a href="#">아이디 | 비밀번호찾기</a>
                                 <a href="#">회원가입</a>
@@ -100,8 +98,42 @@
                         </div>
                     </div>
 
-                    <!-- 구분선 -->
-                    <hr class="login-divide">
+                    <!-- (로그인 후) 내가 필요한 서비스 한 눈에 모아보기 -->
+                    <section class="myp-service-box" id="servicePanel">
+                        <h2 class="myp-box-title-sm service-box-title">
+                            <strong>홍길동</strong> 고객님<br>환영합니다!
+                        </h2>
+
+                        <hr class="service-divider">
+
+                        <div class="service-grid">
+                            <a href="#" class="service-item">
+                                <span class="svc-icon">🧾</span>
+                                <span class="svc-label">이용내역</span>
+                            </a>
+                            <a href="#" class="service-item">
+                                <span class="svc-icon">🗺️</span>
+                                <span class="svc-label">결제지도</span>
+                            </a>
+                            <a href="#" class="service-item">
+                                <span class="svc-icon">🎁</span>
+                                <span class="svc-label">카드혜택</span>
+                            </a>
+                            <a href="#" class="service-item">
+                                <span class="svc-icon">💳</span>
+                                <span class="svc-label">즉시납부</span>
+                            </a>
+                        </div>
+
+                        <div class="service-actions">
+                            <button type="button" class="svc-ctrl-btn svc-extend" id="btnExtendLogin">
+                                로그인 연장
+                            </button>
+                            <button type="button" class="svc-ctrl-btn svc-logout" id="btnLogout">
+                                로그아웃
+                            </button>
+                        </div>
+                    </section>
                 </div>
             </section>
         </div>
@@ -303,5 +335,37 @@
         });
     </script>
 
+    <script> // 메인 로그인 → 서비스 토글
+        document.addEventListener('DOMContentLoaded', function () {
+            const loginCard = document.getElementById('mainLoginCard');
+            if (!loginCard) return;
+
+            const idInput = document.getElementById('mainLoginId');
+            const pwInput = document.getElementById('mainLoginPw');
+            const btnLogin = document.getElementById('btnMainLogin');
+
+            function doLoginSuccess() {
+                // 실제로는 서버 검증 후 성공했을 때 실행
+                loginCard.classList.add('logged-in');
+            }
+
+            btnLogin.addEventListener('click', function () {
+                const id = idInput.value.trim();
+                const pw = pwInput.value.trim();
+
+                if (!id || !pw) {
+                    alert('아이디와 비밀번호를 입력해 주세요.');
+                    return;
+                }
+
+                // TODO: 여기서 실제 로그인 API 호출해서 성공 여부 확인
+                // fetch('/login', { ... }).then(res => if(성공) doLoginSuccess());
+
+                // 지금은 데모이므로 바로 성공 처리
+                doLoginSuccess();
+            });
+        });
+    </script>
 </body>
+
 </html>
